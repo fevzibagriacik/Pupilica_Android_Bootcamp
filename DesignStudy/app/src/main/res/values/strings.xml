@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">DesignStudy</string>
+    <string name="app_name">Pizza</string>
+    <string name="pizzaTitle">Beef Cheese</string>
+    <string name="cheeseText">Cheese</string>
+    <string name="sausageText">Sausage</string>
+    <string name="oliveText">Olive</string>
+    <string name="pepperText">Pepper</string>
+    <string name="deliveryTime">20 min</string>
+    <string name="deliveryTitle">Delivery</string>
+    <string name="pizzaDescription">Meat lover, get ready to meet your pizza !</string>
+    <string name="priceText">$ 5.98</string>
+    <string name="buttonText">ADD TO CART</string>
 </resources>

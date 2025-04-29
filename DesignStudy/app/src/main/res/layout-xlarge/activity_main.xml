@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <TextView
@@ -116,7 +117,7 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="200dp"
         android:layout_marginBottom="16dp"
         android:text="@string/priceText"
         android:textColor="@color/mainColor"
@@ -166,7 +167,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="200dp"
         android:backgroundTint="@color/mainColor"
         android:text="@string/buttonText"
         android:textColor="@color/textColor"

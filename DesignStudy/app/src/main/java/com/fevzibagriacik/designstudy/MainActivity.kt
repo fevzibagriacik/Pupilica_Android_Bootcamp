@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //R = res (resources) folder
+        //R = (in kotlin classes) - res folder, resources
+        //@ = (in xml file) - res folder, resources
     }
 }

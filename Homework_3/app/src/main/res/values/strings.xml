@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Burger</string>
+    <string name="burgerTitle">Chicken Burger</string>
+    <string name="cheddarText">Cheddar</string>
+    <string name="ketchupText">Ketchup</string>
+    <string name="mayonnaiseText">Mayonnaise</string>
+    <string name="tomatoText">Tomato</string>
+    <string name="onionText">Onion</string>
+    <string name="picklesText">Pickles</string>
+    <string name="lettuceText">Lettuce</string>
+    <string name="doubleChickenText">Double Chicken</string>
+    <string name="deliveryTitle">Delivery</string>
+    <string name="deliveryTime">30 min</string>
+    <string name="burgerDescription">The real flavor starts at the first bite!</string>
+    <string name="priceText">$ 6.32</string>
+    <string name="buttonText">ADD TO CARD</string>
+
+</resources>

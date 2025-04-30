@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Burger</string>
+    <string name="burgerTitle">Tavuk Burger</string>
+    <string name="cheddarText">Çedar</string>
+    <string name="ketchupText">Ketçap</string>
+    <string name="mayonnaiseText">Mayonez</string>
+    <string name="tomatoText">Domates</string>
+    <string name="onionText">Soğan</string>
+    <string name="picklesText">Turşu</string>
+    <string name="lettuceText">Marul</string>
+    <string name="doubleChickenText">Çift Tavuk</string>
+    <string name="deliveryTitle">Teslimat</string>
+    <string name="deliveryTime">30 dk</string>
+    <string name="burgerDescription">Gerçek lezzet, ilk ısırıkta başlar!</string>
+    <string name="priceText">₺123,50</string>
+    <string name="buttonText">SEPETE EKLE</string>
+
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_nav"
+    app:startDestination="@id/mainPageFragment">
+
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="com.fevzibagriacik.homework_4.MainPageFragment"
+        android:label="fragment_main_page"
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/toA"
+            app:destination="@id/APageFragment"
+            app:popUpTo="@id/mainPageFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/toX"
+            app:destination="@id/XPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/APageFragment"
+        android:name="com.fevzibagriacik.homework_4.APageFragment"
+        android:label="fragment_a_page"
+        tools:layout="@layout/fragment_a_page" >
+        <action
+            android:id="@+id/toB"
+            app:destination="@id/BPageFragment"
+            app:popUpTo="@id/APageFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/BPageFragment"
+        android:name="com.fevzibagriacik.homework_4.BPageFragment"
+        android:label="fragment_b_page"
+        tools:layout="@layout/fragment_b_page" >
+        <action
+            android:id="@+id/toYFromB"
+            app:destination="@id/YPageFragment"
+            app:popUpTo="@id/BPageFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/YPageFragment"
+        android:name="com.fevzibagriacik.homework_4.YPageFragment"
+        android:label="fragment_y_page"
+        tools:layout="@layout/fragment_y_page" />
+    <fragment
+        android:id="@+id/XPageFragment"
+        android:name="com.fevzibagriacik.homework_4.XPageFragment"
+        android:label="fragment_x_page"
+        tools:layout="@layout/fragment_x_page" >
+        <action
+            android:id="@+id/toYFromX"
+            app:destination="@id/YPageFragment"
+            app:popUpTo="@id/XPageFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.fevzibagriacik.widgetusage.databinding.ActivityMainBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -45,6 +47,19 @@ class MainActivity : AppCompatActivity() {
 
             val selectedCountry = binding.autoCompleteTextView.text.toString()
             Log.e("Result", selectedCountry)
+        }
+
+        binding.buttonAlert.setOnClickListener{
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Title")
+                .setMessage("Message")
+                .setPositiveButton("OK"){d,i ->
+                    Toast.makeText(this,"OK Clicked.", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel"){d,i ->
+                    Toast.makeText(this,"Cancel Clicked.", Toast.LENGTH_SHORT).show()
+                }
+                .show()
         }
     }
 }

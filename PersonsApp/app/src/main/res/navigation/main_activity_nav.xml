@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_nav"
+    app:startDestination="@id/mainPageFragment">
+
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="com.fevzibagriacik.personsapp.ui.fragment.MainPageFragment"
+        android:label="fragment_main_page"
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/toPersonDetail"
+            app:destination="@id/personDetailFragment" />
+        <action
+            android:id="@+id/toPersonRecord"
+            app:destination="@id/personRecordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personDetailFragment"
+        android:name="com.fevzibagriacik.personsapp.ui.fragment.PersonDetailFragment"
+        android:label="fragment_person_detail"
+        tools:layout="@layout/fragment_person_detail" >
+        <argument
+            android:name="person"
+            app:argType="com.fevzibagriacik.personsapp.data.entity.Kisiler" />
+    </fragment>
+    <fragment
+        android:id="@+id/personRecordFragment"
+        android:name="com.fevzibagriacik.personsapp.ui.fragment.PersonRecordFragment"
+        android:label="fragment_person_record"
+        tools:layout="@layout/fragment_person_record" />
+</navigation>

@@ -10,9 +10,11 @@ import com.fevzibagriacik.personsapp.data.entity.Kisiler
 import com.fevzibagriacik.personsapp.databinding.CardDesignBinding
 import com.fevzibagriacik.personsapp.databinding.FragmentMainPageBinding
 import com.fevzibagriacik.personsapp.ui.fragment.MainPageFragmentDirections
+import com.fevzibagriacik.personsapp.ui.viewmodel.MainPageViewModel
+import com.fevzibagriacik.personsapp.utils.makeTransition
 import com.google.android.material.snackbar.Snackbar
 
-class PersonsAdapter(var mContext: Context, var personList: List<Kisiler>)
+class PersonsAdapter(var mContext: Context, var personList: List<Kisiler>, var viewModel:MainPageViewModel)
     : RecyclerView.Adapter<PersonsAdapter.CardDesignHolder>(){
     //context provides that we know which page
 
@@ -33,22 +35,18 @@ class PersonsAdapter(var mContext: Context, var personList: List<Kisiler>)
 
         t.cardViewRow.setOnClickListener{
             val transition = MainPageFragmentDirections.toPersonDetail(person = person)
-            Navigation.findNavController(it).navigate(transition)
+            Navigation.makeTransition(it, transition)
         }
 
         t.imageViewDelete.setOnClickListener{
             Snackbar.make(it, "${person.kisi_ad} delete?", Snackbar.LENGTH_SHORT)
                 .setAction("Yes"){
-                    delete(person.kisi_id)
+                    viewModel.delete(person.kisi_id)
                 }.show()
         }
     }
 
     override fun getItemCount(): Int {
         return personList.size //How many
-    }
-
-    fun delete(person_id:Int){
-        Log.e("Delete Person", person_id.toString())
     }
 }

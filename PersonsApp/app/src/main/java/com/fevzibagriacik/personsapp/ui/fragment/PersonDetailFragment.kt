@@ -6,12 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.fevzibagriacik.personsapp.R
 import com.fevzibagriacik.personsapp.databinding.FragmentPersonDetailBinding
+import com.fevzibagriacik.personsapp.ui.viewmodel.PersonDetailViewModel
+import com.fevzibagriacik.personsapp.ui.viewmodel.PersonRecordViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PersonDetailFragment : Fragment() {
     private lateinit var binding: FragmentPersonDetailBinding
+    private lateinit var viewModel:PersonDetailViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,13 +33,16 @@ class PersonDetailFragment : Fragment() {
         binding.buttonUpdate.setOnClickListener{
             val person_name = binding.editTextPersonName.text.toString()
             val person_number = binding.editTextPersonNumber.text.toString()
-            update(comingPerson.kisi_id, person_name, person_number)
+            viewModel.update(comingPerson.kisi_id, person_name, person_number)
         }
 
         return binding.root
     }
 
-    fun update(person_id:Int, person_name:String, person_number:String){
-        Log.e("Update Person", "$person_id - $person_name - $person_number")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val tempViewModel: PersonDetailViewModel by viewModels()
+        viewModel = tempViewModel
     }
 }

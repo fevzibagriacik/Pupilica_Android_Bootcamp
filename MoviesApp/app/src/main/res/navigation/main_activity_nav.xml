@@ -9,10 +9,18 @@
         android:id="@+id/mainPageFragment"
         android:name="com.fevzibagriacik.moviesapp.MainPageFragment"
         android:label="fragment_main_page"
-        tools:layout="@layout/fragment_main_page" />
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/toDetail"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.fevzibagriacik.moviesapp.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="movieObject"
+            app:argType="com.fevzibagriacik.moviesapp.Filmler" />
+    </fragment>
 </navigation>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.MainPageFragment">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipMaxPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Max Price"
+        android:textColor="@color/blackTextColor"
+        app:chipCornerRadius="20dp"
+        app:chipStrokeColor="@color/chipEdgeColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/chipMinPrice"
+        app:layout_constraintTop_toBottomOf="@+id/svSearch" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipMinPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Min Price"
+        android:textColor="@color/blackTextColor"
+        app:chipCornerRadius="20dp"
+        app:chipStrokeColor="@color/chipEdgeColor"
+        app:layout_constraintEnd_toStartOf="@+id/chipMaxPrice"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/chipKitchen"
+        app:layout_constraintTop_toBottomOf="@+id/svSearch" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMainPage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/mainColor"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/whiteTextColor" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="221B Baker Street, London \nNW1 6XE, United Kingdom"
+        android:textColor="@color/whiteTextColor"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarMainPage"
+        app:layout_constraintStart_toEndOf="@+id/ivLocation"
+        app:layout_constraintTop_toTopOf="@+id/toolbarMainPage" />
+
+    <ImageView
+        android:id="@+id/ivLocation"
+        android:layout_width="37dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/location_image"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarMainPage"
+        app:layout_constraintStart_toStartOf="@+id/toolbarMainPage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivFavourite"
+        android:layout_width="52dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/favourite_image"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarMainPage"
+        app:layout_constraintEnd_toStartOf="@+id/ivBasket"
+        app:layout_constraintTop_toTopOf="@+id/toolbarMainPage" />
+
+    <ImageView
+        android:id="@+id/ivBasket"
+        android:layout_width="49dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/basket_image"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarMainPage"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarMainPage"
+        app:layout_constraintTop_toTopOf="@+id/toolbarMainPage" />
+
+    <SearchView
+        android:id="@+id/svSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/searchViewColor"
+        android:elevation="10dp"
+        android:queryHint="Search restaurant or market"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMainPage" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="List"
+        android:textColor="@color/blackTextColor"
+        app:chipCornerRadius="20dp"
+        app:chipStrokeColor="@color/chipEdgeColor"
+        app:layout_constraintEnd_toStartOf="@+id/chipKitchen"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/svSearch" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipKitchen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Kitchen"
+        android:textColor="@color/blackTextColor"
+        app:chipCornerRadius="20dp"
+        app:chipStrokeColor="@color/chipEdgeColor"
+        app:layout_constraintEnd_toStartOf="@+id/chipMinPrice"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/chipList"
+        app:layout_constraintTop_toBottomOf="@+id/svSearch" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMainPage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipMaxPrice" />
+</androidx.constraintlayout.widget.ConstraintLayout>

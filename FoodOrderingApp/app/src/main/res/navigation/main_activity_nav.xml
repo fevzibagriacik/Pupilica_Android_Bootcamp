@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_nav"
+    app:startDestination="@id/mainPageFragment">
+
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="com.fevzibagriacik.foodorderingapp.ui.fragment.MainPageFragment"
+        android:label="fragment_main_page"
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/toDetailFromMain"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/toBasketFromMain"
+            app:destination="@id/basketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.fevzibagriacik.foodorderingapp.ui.fragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/toMainFromDetail"
+            app:destination="@id/mainPageFragment" />
+        <argument
+            android:name="food"
+            app:argType="com.fevzibagriacik.foodorderingapp.data.entity.Yemekler" />
+    </fragment>
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.fevzibagriacik.foodorderingapp.ui.fragment.BasketFragment"
+        android:label="fragment_basket"
+        tools:layout="@layout/fragment_basket" />
+</navigation>

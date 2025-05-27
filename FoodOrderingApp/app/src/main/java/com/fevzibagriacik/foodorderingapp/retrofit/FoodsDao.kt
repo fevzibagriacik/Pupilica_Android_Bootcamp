@@ -21,6 +21,8 @@ interface FoodsDao {
                                 @Field("yemek_siparis_adet") yemek_siparis_adet:Int,
                                 @Field("kullanici_adi") kullanici_adi:String) : CRUDCevap
 
-    @GET("yemekler/sepettekiYemekleriGetir.php")
-    suspend fun uploadBasketFoods() : SepetYemeklerCevap
+    @FormUrlEncoded
+    @POST("yemekler/sepettekiYemekleriGetir.php")
+    suspend fun uploadBasketFoods(@Field("kullanici_adi") userName:String)
+    : SepetYemeklerCevap
 }

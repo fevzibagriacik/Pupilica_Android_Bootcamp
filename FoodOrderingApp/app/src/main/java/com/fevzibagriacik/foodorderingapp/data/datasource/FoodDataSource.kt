@@ -70,5 +70,11 @@ class FoodDataSource() {
         return response
     }
 
-    //suspend fun uploadBasketFoods(): List<Sepet_Yemekler> = withContext
+    suspend fun uploadBasketFoods(userName:String): List<Sepet_Yemekler> = withContext(Dispatchers.IO){
+        val fdao = ApiUtils.getFoodsDao()
+        val basketFoodList = fdao.uploadBasketFoods(userName)
+        val apiFoods = basketFoodList.sepet_yemekler
+
+        return@withContext apiFoods
+    }
 }

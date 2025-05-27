@@ -1,6 +1,8 @@
 package com.fevzibagriacik.foodorderingapp.data.datasource
 
 import android.util.Log
+import com.fevzibagriacik.foodorderingapp.data.entity.CRUDCevap
+import com.fevzibagriacik.foodorderingapp.data.entity.Sepet_Yemekler
 import com.fevzibagriacik.foodorderingapp.data.entity.Yemekler
 import com.fevzibagriacik.foodorderingapp.retrofit.ApiUtils
 import kotlinx.coroutines.Dispatchers
@@ -59,4 +61,14 @@ class FoodDataSource() {
         return@withContext foodsWithPrice
     }
 
+    suspend fun addFoodToBasket(foodName:String, foodImageName:String,
+                                foodPrice:String, foodAmount:Int, userName:String) : CRUDCevap{
+        val fdao = ApiUtils.getFoodsDao()
+        val response = fdao.addFoodToBasket(foodName, foodImageName, foodPrice,
+            foodAmount, userName)
+
+        return response
+    }
+
+    //suspend fun uploadBasketFoods(): List<Sepet_Yemekler> = withContext
 }

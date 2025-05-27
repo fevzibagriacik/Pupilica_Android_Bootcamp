@@ -7,11 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.fevzibagriacik.foodorderingapp.R
+import com.fevzibagriacik.foodorderingapp.data.datasource.FoodDataSource
+import com.fevzibagriacik.foodorderingapp.data.entity.Sepet_Yemekler
 import com.fevzibagriacik.foodorderingapp.data.entity.Yemekler
+import com.fevzibagriacik.foodorderingapp.data.repo.FoodRepo
 import com.fevzibagriacik.foodorderingapp.databinding.CardDesignMainPageBinding
 import com.fevzibagriacik.foodorderingapp.databinding.FragmentDetailBinding
 import com.fevzibagriacik.foodorderingapp.ui.viewmodel.DetailViewModel
@@ -25,6 +30,14 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
+
+        val dataSource = FoodDataSource()
+        val repo = FoodRepo(dataSource)
+        viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return DetailViewModel(repo) as T
+            }
+        })[DetailViewModel::class.java]
 
         val bundle:DetailFragmentArgs by navArgs()
         val comingFood = bundle.food
@@ -48,6 +61,18 @@ class DetailFragment : Fragment() {
 
         if(comingFood.puan == 5){
             binding.ivFood
+        }
+
+        binding.buttonBasket.setOnClickListener {
+            val addedFood = Sepet_Yemekler(0, comingFood.yemek_adi,
+                comingFood.yemek_resim_adi, comingFood.fiyat, amount, "Fevzi")
+
+            viewModel.addFoodToBasket(addedFood.yemek_adi, addedFood.yemek_resim_adi,
+                addedFood.yemek_fiyat, addedFood.yemek_siparis_adet, addedFood.kullanici_adi)
+
+            Log.e("Added Food", "${addedFood.yemek_adi} - ${addedFood.yemek_resim_adi} - " +
+                    "${addedFood.yemek_fiyat} - ${addedFood.yemek_siparis_adet} - ${addedFood.kullanici_adi}")
+
         }
 
         return binding.root

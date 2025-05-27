@@ -21,7 +21,7 @@ class FoodAdapter(var mContext:Context, var foodList:List<Yemekler>, var viewMod
         val binding = CardDesignMainPageBinding.inflate(LayoutInflater.from(mContext), parent, false)
         return MainCardDesignHolder(binding)
     }
-//Adapterda kaldık buraya veri çekcez
+
     override fun onBindViewHolder(holder: MainCardDesignHolder, position: Int) {
         val food = foodList[position]
         val b = holder.binding

@@ -2,6 +2,7 @@ package com.fevzibagriacik.foodorderingapp.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -11,10 +12,9 @@ import com.fevzibagriacik.foodorderingapp.databinding.CardDesignBasketBinding
 import com.fevzibagriacik.foodorderingapp.databinding.CardDesignMainPageBinding
 import com.fevzibagriacik.foodorderingapp.ui.viewmodel.BasketViewModel
 
-class BasketFoodAdapter(var mContext:Context, var foodList:List<Sepet_Yemekler>,
-                        viewModel:BasketViewModel)
+class BasketFoodAdapter(var mContext:Context, var foodList:List<Sepet_Yemekler> = listOf(),
+                        var viewModel:BasketViewModel)
     : RecyclerView.Adapter<BasketFoodAdapter.BasketFoodDesignHolder>(){
-        private var amount = 1
     inner class BasketFoodDesignHolder(var binding: CardDesignBasketBinding)
         : RecyclerView.ViewHolder(binding.root)
 
@@ -28,7 +28,7 @@ class BasketFoodAdapter(var mContext:Context, var foodList:List<Sepet_Yemekler>,
         val b = holder.binding
 
         b.tvBasketCardFoodName.text = basketFood.yemek_adi
-        b.tvBasketCardPrice.text = "₺ ${basketFood.yemek_fiyat}"
+        b.tvBasketCardPrice.text = "₺ ${basketFood.yemek_fiyat.toInt() * basketFood.yemek_siparis_adet}"
         b.tvBasketCardAmount.text = basketFood.yemek_siparis_adet.toString()
         showImage(basketFood.yemek_resim_adi, b)
 
@@ -40,6 +40,9 @@ class BasketFoodAdapter(var mContext:Context, var foodList:List<Sepet_Yemekler>,
             decreaseAmount(b, basketFood)
         }
 
+        b.ivDelete.setOnClickListener {
+            viewModel.deleteBasketFood(basketFood.sepet_yemek_id, "Fevzi")
+        }
     }
 
     override fun getItemCount(): Int {
@@ -52,19 +55,20 @@ class BasketFoodAdapter(var mContext:Context, var foodList:List<Sepet_Yemekler>,
     }
 
     fun increaseAmount(binding:CardDesignBasketBinding, food:Sepet_Yemekler){
-        amount++
-        val price = amount * food.yemek_fiyat.toInt()
+        food.yemek_siparis_adet++
+        val price = food.yemek_siparis_adet * food.yemek_fiyat.toInt()
 
         binding.tvBasketCardPrice.text = "₺ $price"
-        binding.tvBasketCardAmount.text = amount.toString()
+        binding.tvBasketCardAmount.text = food.yemek_siparis_adet.toString()
     }
 
     fun decreaseAmount(binding:CardDesignBasketBinding, food:Sepet_Yemekler){
-        amount--
-        val price = amount * food.yemek_fiyat.toInt()
+        if(food.yemek_siparis_adet > 1){
+            food.yemek_siparis_adet--
+            val price = food.yemek_siparis_adet * food.yemek_fiyat.toInt()
 
-        binding.tvBasketCardPrice.text = "₺ $price"
-        binding.tvBasketCardAmount.text = amount.toString()
+            binding.tvBasketCardPrice.text = "₺ $price"
+            binding.tvBasketCardAmount.text = food.yemek_siparis_adet.toString()
+        }
     }
-
 }

@@ -25,4 +25,9 @@ interface FoodsDao {
     @POST("yemekler/sepettekiYemekleriGetir.php")
     suspend fun uploadBasketFoods(@Field("kullanici_adi") userName:String)
     : SepetYemeklerCevap
+
+    @POST("yemekler/sepettenYemekSil.php")
+    @FormUrlEncoded
+    suspend fun deleteBasketFood(@Field("sepet_yemek_id") sepet_yemek_id:Int,
+                                 @Field("kullanici_adi") kullanici_adi:String) : CRUDCevap
 }

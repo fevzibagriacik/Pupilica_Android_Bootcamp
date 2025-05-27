@@ -30,4 +30,10 @@ class FoodRepo(var foodDataSource:FoodDataSource) {
 
         return result
     }
+
+    suspend fun deleteBasketFood(basketFoodId:Int, userName:String) : CRUDCevap{
+        val result = foodDataSource.deleteBasketFood(basketFoodId, userName)
+
+        return result
+    }
 }

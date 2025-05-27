@@ -77,4 +77,11 @@ class FoodDataSource() {
 
         return@withContext apiFoods
     }
+
+    suspend fun deleteBasketFood(basketFoodId:Int, userName:String) : CRUDCevap{
+        val fdao = ApiUtils.getFoodsDao()
+        val response = fdao.deleteBasketFood(basketFoodId, userName)
+
+        return response
+    }
 }

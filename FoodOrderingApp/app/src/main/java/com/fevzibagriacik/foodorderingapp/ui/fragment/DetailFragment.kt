@@ -24,7 +24,6 @@ import com.fevzibagriacik.foodorderingapp.ui.viewmodel.DetailViewModel
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     private lateinit var viewModel:DetailViewModel
-    private var amount = 1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,7 +64,7 @@ class DetailFragment : Fragment() {
 
         binding.buttonBasket.setOnClickListener {
             val addedFood = Sepet_Yemekler(0, comingFood.yemek_adi,
-                comingFood.yemek_resim_adi, comingFood.fiyat, amount, "Fevzi")
+                comingFood.yemek_resim_adi, comingFood.fiyat, comingFood.amount, "Fevzi")
 
             viewModel.addFoodToBasket(addedFood.yemek_adi, addedFood.yemek_resim_adi,
                 addedFood.yemek_fiyat, addedFood.yemek_siparis_adet, addedFood.kullanici_adi)
@@ -189,18 +188,20 @@ class DetailFragment : Fragment() {
     }
 
     fun increaseAmount(food:Yemekler){
-        amount++
-        val price = amount * food.fiyat.toInt()
+        food.amount++
+        val price = food.amount * food.fiyat.toInt()
 
         binding.tvFoodPrice.text = "₺ $price"
-        binding.tvAmount.text = amount.toString()
+        binding.tvAmount.text = food.amount.toString()
     }
 
-    fun decreaseAmount(food:Yemekler){
-        amount--
-        val price = amount * food.fiyat.toInt()
+    fun decreaseAmount(food:Yemekler) {
+        if (food.amount > 1) {
+            food.amount--
+            val price = food.amount * food.fiyat.toInt()
 
-        binding.tvFoodPrice.text = "₺ $price"
-        binding.tvAmount.text = amount.toString()
+            binding.tvFoodPrice.text = "₺ $price"
+            binding.tvAmount.text = food.amount.toString()
+        }
     }
 }

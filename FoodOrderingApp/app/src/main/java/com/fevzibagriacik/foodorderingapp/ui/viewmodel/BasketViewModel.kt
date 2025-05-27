@@ -3,12 +3,14 @@ package com.fevzibagriacik.foodorderingapp.ui.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.fevzibagriacik.foodorderingapp.data.entity.CRUDCevap
 import com.fevzibagriacik.foodorderingapp.data.entity.Sepet_Yemekler
 import com.fevzibagriacik.foodorderingapp.data.repo.FoodRepo
 import kotlinx.coroutines.launch
 
 class BasketViewModel(var foodRepo:FoodRepo) :ViewModel(){
     val basketFoodList = MutableLiveData<List<Sepet_Yemekler>>()
+    val basketFood = MutableLiveData<CRUDCevap>()
 
     init{
         uploadBasketFoods("Fevzi")
@@ -18,6 +20,16 @@ class BasketViewModel(var foodRepo:FoodRepo) :ViewModel(){
         viewModelScope.launch{
             val basketFoods = foodRepo.uploadBasketFoods(userName)
             basketFoodList.value = basketFoods
+        }
+    }
+
+    fun deleteBasketFood(basketFoodId:Int, userName:String){
+        viewModelScope.launch {
+            val deletedFood = foodRepo.deleteBasketFood(basketFoodId, userName)
+
+            basketFood.value = deletedFood
+
+            uploadBasketFoods(userName)
         }
     }
 }

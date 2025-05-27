@@ -39,7 +39,7 @@ class BasketFragment : Fragment() {
         binding.recyclerView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
 
         viewModel.basketFoodList.observe(viewLifecycleOwner) { foods ->
-            adapter.foodList = foods
+            adapter.foodList = foods ?: emptyList()
             adapter.notifyDataSetChanged()
         }
 

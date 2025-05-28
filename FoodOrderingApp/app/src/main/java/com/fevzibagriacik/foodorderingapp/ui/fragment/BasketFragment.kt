@@ -1,5 +1,7 @@
 package com.fevzibagriacik.foodorderingapp.ui.fragment
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +22,7 @@ import com.fevzibagriacik.foodorderingapp.ui.viewmodel.MainPageViewModel
 class BasketFragment : Fragment() {
     private lateinit var binding: FragmentBasketBinding
     private lateinit var viewModel:BasketViewModel
+    private lateinit var adapter:BasketFoodAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,13 +37,23 @@ class BasketFragment : Fragment() {
             }
         }).get(BasketViewModel::class.java)
 
-        val adapter = BasketFoodAdapter(requireContext(), listOf(), viewModel)
+        adapter = BasketFoodAdapter(requireContext(), viewModel)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
 
         viewModel.basketFoodList.observe(viewLifecycleOwner) { foods ->
             adapter.foodList = foods ?: emptyList()
             adapter.notifyDataSetChanged()
+
+            val totalPrice = foods?.sumOf{it.yemek_fiyat.toInt() * it.yemek_siparis_adet} ?: 0
+            binding.tvBasketTotalPrice.text = "₺ $totalPrice"
+
+            if (foods.isNullOrEmpty()) {
+                binding.recyclerView.visibility = View.GONE
+            } else {
+                binding.recyclerView.visibility = View.VISIBLE
+                adapter.foodList = foods
+            }
         }
 
         viewModel.uploadBasketFoods("Fevzi")
@@ -48,9 +61,4 @@ class BasketFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        viewModel.uploadBasketFoods("Fevzi")
-    }
 }

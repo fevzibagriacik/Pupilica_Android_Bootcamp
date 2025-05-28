@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -20,6 +21,7 @@ import com.fevzibagriacik.foodorderingapp.data.repo.FoodRepo
 import com.fevzibagriacik.foodorderingapp.databinding.CardDesignMainPageBinding
 import com.fevzibagriacik.foodorderingapp.databinding.FragmentDetailBinding
 import com.fevzibagriacik.foodorderingapp.ui.viewmodel.DetailViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
@@ -72,6 +74,13 @@ class DetailFragment : Fragment() {
             Log.e("Added Food", "${addedFood.yemek_adi} - ${addedFood.yemek_resim_adi} - " +
                     "${addedFood.yemek_fiyat} - ${addedFood.yemek_siparis_adet} - ${addedFood.kullanici_adi}")
 
+            AlertDialog.Builder(requireContext())
+                .setMessage("Food is added to the basket.")
+                .setPositiveButton("OK") { dialog, _ ->
+                    Navigation.findNavController(it).navigate(R.id.toMainFromDetail)
+                    dialog.dismiss()
+                }
+                .show()
         }
 
         return binding.root
